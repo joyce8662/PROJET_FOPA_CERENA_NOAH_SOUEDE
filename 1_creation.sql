@@ -1,9 +1,7 @@
 CREATE DATABASE TELEMEDECINE;
 
 USE TELEMEDECINE;
--- =====================================================
--- Table UTILISATEUR
--- =====================================================
+
 CREATE TABLE UTILISATEUR (
     id_utilisateur INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -14,9 +12,6 @@ CREATE TABLE UTILISATEUR (
     adresse_ip_derniere_connexion VARCHAR(45)
 );
 
--- =====================================================
--- Table PATIENT
--- =====================================================
 CREATE TABLE PATIENT (
     id_patient INT PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
@@ -28,9 +23,6 @@ CREATE TABLE PATIENT (
     FOREIGN KEY (id_tuteur) REFERENCES PATIENT(id_patient) ON DELETE SET NULL
 );
 
--- =====================================================
--- Table MEDECIN
--- =====================================================
 CREATE TABLE MEDECIN (
     id_medecin INT PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
@@ -41,17 +33,12 @@ CREATE TABLE MEDECIN (
     FOREIGN KEY (id_medecin) REFERENCES UTILISATEUR(id_utilisateur) ON DELETE CASCADE
 );
 
--- =====================================================
--- Table SPECIALITE
--- =====================================================
+
 CREATE TABLE SPECIALITE (
     id_specialite INT PRIMARY KEY AUTO_INCREMENT,
     nom_specialite VARCHAR(50) UNIQUE NOT NULL
 );
 
--- =====================================================
--- Table MEDECIN_SPECIALITE (Association many-to-many)
--- =====================================================
 CREATE TABLE MEDECIN_SPECIALITE (
     id_medecin INT,
     id_specialite INT,
@@ -60,18 +47,14 @@ CREATE TABLE MEDECIN_SPECIALITE (
     FOREIGN KEY (id_specialite) REFERENCES SPECIALITE(id_specialite) ON DELETE CASCADE
 );
 
--- =====================================================
--- Table ETABLISSEMENT
--- =====================================================
+
 CREATE TABLE ETABLISSEMENT (
     id_etablissement INT PRIMARY KEY AUTO_INCREMENT,
     nom_etablissement VARCHAR(100) NOT NULL,
     adresse TEXT NOT NULL
 );
 
--- =====================================================
--- Table MEDECIN_ETABLISSEMENT (Association many-to-many)
--- =====================================================
+
 CREATE TABLE MEDECIN_ETABLISSEMENT (
     id_medecin INT,
     id_etablissement INT,
@@ -80,9 +63,7 @@ CREATE TABLE MEDECIN_ETABLISSEMENT (
     FOREIGN KEY (id_etablissement) REFERENCES ETABLISSEMENT(id_etablissement) ON DELETE CASCADE
 );
 
--- =====================================================
--- Table DISPONIBILITE
--- =====================================================
+
 CREATE TABLE DISPONIBILITE (
     id_disponibilite INT PRIMARY KEY AUTO_INCREMENT,
     jour_semaine INT NOT NULL,
@@ -93,9 +74,7 @@ CREATE TABLE DISPONIBILITE (
     FOREIGN KEY (id_medecin) REFERENCES MEDECIN(id_medecin) ON DELETE CASCADE
 );
 
--- =====================================================
--- Table RENDEZ_VOUS
--- =====================================================
+
 CREATE TABLE RENDEZ_VOUS (
     id_rendez_vous INT PRIMARY KEY AUTO_INCREMENT,
     motif TEXT,
@@ -107,9 +86,7 @@ CREATE TABLE RENDEZ_VOUS (
     FOREIGN KEY (id_medecin) REFERENCES MEDECIN(id_medecin) ON DELETE RESTRICT
 );
 
--- =====================================================
--- Table CONSULTATION
--- =====================================================
+
 CREATE TABLE CONSULTATION (
     id_consultation INT PRIMARY KEY AUTO_INCREMENT,
     compte_rendu_url VARCHAR(255),
@@ -120,9 +97,7 @@ CREATE TABLE CONSULTATION (
     FOREIGN KEY (id_rendez_vous) REFERENCES RENDEZ_VOUS(id_rendez_vous) ON DELETE CASCADE
 );
 
--- =====================================================
--- Table AVIS
--- =====================================================
+
 CREATE TABLE AVIS (
     id_avis INT PRIMARY KEY AUTO_INCREMENT,
     note INT NOT NULL,
@@ -132,9 +107,7 @@ CREATE TABLE AVIS (
     FOREIGN KEY (id_consultation) REFERENCES CONSULTATION(id_consultation) ON DELETE CASCADE
 );
 
--- =====================================================
--- Table PAIEMENT
--- =====================================================
+
 CREATE TABLE PAIEMENT (
     id_paiement INT PRIMARY KEY AUTO_INCREMENT,
     montant DECIMAL(10,2) NOT NULL,
@@ -144,9 +117,6 @@ CREATE TABLE PAIEMENT (
     facture_url VARCHAR(255)
 );
 
--- =====================================================
--- Table CONSULTATION_PAIEMENT (Association many-to-many)
--- =====================================================
 CREATE TABLE CONSULTATION_PAIEMENT (
     id_consultation INT,
     id_paiement INT,
