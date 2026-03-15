@@ -258,21 +258,6 @@ Montant moyen d'une consultation par médecin
 
 Patients avec le plus de consultations (fidélité)
 
-Scénario 4 : Support Technique - Sécurité et traçabilité
-Rôle : Administrateur système
-Objectif : Surveiller les connexions suspectes et assurer la traçabilité des accès.
-
-Données à extraire :
-
-Utilisateurs avec connexions depuis plusieurs IP différentes
-
-Connexions en dehors des heures ouvrables
-
-Dernières connexions des utilisateurs inactifs
-
-Statistiques de connexion par type d'utilisateur
-
-Adresses IP suspectes (tentatives multiples)
 
 
 
