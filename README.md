@@ -132,5 +132,76 @@ Les associations reflètent les règles de gestion identifiées :
 - **Conservation légale** : données de santé conservées 15 ans
 
 ---
+## 🔐 Prompt d'insertion 
+
+Donne les requêtes d’insertion permettant de remplir une base de données MySQL de télé-médecine dont le modèle relationnel est le suivant :
+
+UTILISATEUR(id_utilisateur, nom, prenom, email, type)
+PATIENT(#id_patient)
+MEDECIN(#id_medecin)
+SPECIALITE(id_specialite, nom)
+MEDECIN_SPECIALITE(#id_medecin, #id_specialite)
+ETABLISSEMENT(id_etablissement, nom, ville)
+MEDECIN_ETABLISSEMENT(#id_medecin, #id_etablissement)
+DISPONIBILITE(id_disponibilite, #id_medecin, jour_semaine, heure_debut, heure_fin)
+RENDEZ_VOUS(id_rendez_vous, #id_patient, #id_medecin, date_heure, statut)
+CONSULTATION(id_consultation, #id_rendez_vous, compte_rendu)
+AVIS(id_avis, #id_consultation, note, commentaire)
+PAIEMENT(id_paiement, mode_paiement, statut, montant)
+CONSULTATION_PAIEMENT(#id_consultation, #id_paiement)
+
+Les clés primaires correspondent aux id.
+Les # indiquent les clés étrangères qui portent le même nom que les clés primaires auxquelles elles font référence.
+
+Contraintes à respecter :
+
+UTILISATEUR.type ∈ ('patient','medecin')
+
+email doit être valide et unique
+
+DISPONIBILITE.jour_semaine entre 1 et 7
+
+RENDEZ_VOUS.statut ∈ ('A venir','Confirmé','Terminé','Annulé patient','Annulé médecin')
+
+AVIS.note entre 1 et 5
+
+PAIEMENT.mode_paiement ∈ ('CB','Carte Vitale','Mutuelle')
+
+PAIEMENT.statut ∈ ('En attente','Validé','Remboursé')
+
+Nombre de lignes souhaité par table :
+
+SPECIALITE : 5
+
+ETABLISSEMENT : 3
+
+UTILISATEUR : 6 (3 médecins et 3 patients)
+
+MEDECIN : 3
+
+PATIENT : 3
+
+MEDECIN_SPECIALITE : 3
+
+MEDECIN_ETABLISSEMENT : 3
+
+DISPONIBILITE : plusieurs créneaux cohérents pour les médecins
+
+RENDEZ_VOUS : quelques rendez-vous correspondant aux disponibilités
+
+CONSULTATION : 1 par rendez-vous
+
+AVIS : uniquement pour les consultations terminées
+
+PAIEMENT : 1 par consultation
+
+CONSULTATION_PAIEMENT : association consultation/paiement
+
+Les spécialités doivent inclure par exemple : Médecine générale, Dermatologie, Cardiologie.
+Les données doivent être réalistes (noms, emails, villes, horaires).
+
+Les clés étrangères doivent faire référence à des clés primaires existantes : commence par remplir les tables sans clés étrangères, puis celles qui en dépendent.
+
+Fournis l’ensemble sous la forme d’un script SQL nommé 3_insertion.sql contenant uniquement des requêtes INSERT INTO valides pour MySQL, prêt à être exécuté.
 
 
