@@ -204,4 +204,17 @@ Les clés étrangères doivent faire référence à des clés primaires existant
 
 Fournis l’ensemble sous la forme d’un script SQL nommé 3_insertion.sql contenant uniquement des requêtes INSERT INTO valides pour MySQL, prêt à être exécuté.
 
+_____________________________________________________________________
+
+# Scénario d'utilisation :
+
+La base de données sera utilisée par un administrateur de la plateforme de télémédecine
+On cherchera à superviser l’activité médicale : à savoir les médecins et patients inscrits, rendez-vous, consultations et paiements.
+L’administrateur doit pouvoir :
+-	Consulter la liste des médecins et leur spécialisation
+-	Voir les disponibilités des médecins
+-	Consulter les rdvs programmés
+-	Avoir les données des consultations effectuées
+-	Consulter les avis laissés par les patients
+-	Suivre les paiements réalisés pour les consultations
 
