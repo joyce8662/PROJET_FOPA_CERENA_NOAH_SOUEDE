@@ -98,8 +98,8 @@ INSERT INTO DISPONIBILITE (id_medecin, jour_semaine, heure_debut, heure_fin) VAL
 -- RENDEZ-VOUS
 -- -------------------
 INSERT INTO RENDEZ_VOUS (id_patient, id_medecin, date_heure, statut, motif) VALUES
-(4,1,'2025-04-06 09:30:00','Terminé','Consultation générale'),
-(5,2,'2025-04-07 10:30:00','Terminé','Dermatologie - irritation'),
+(4,1,'2026-04-06 09:30:00','Terminé','Consultation générale'),
+(5,2,'2026-04-07 10:30:00','Terminé','Dermatologie - irritation'),
 (6,3,'2026-04-10 09:30:00','Confirmé','Suivi cardiologique'),
 (4,2,'2026-04-09 15:30:00','A venir','Nouvelle consultation dermatologique');
 
