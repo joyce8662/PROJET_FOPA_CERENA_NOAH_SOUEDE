@@ -19,10 +19,10 @@ SELECT id_medecin, id_specialite
 FROM MEDECIN_SPECIALITE
 WHERE id_specialite IN (1,2,3);
 
--- affiche la date et l'heure des rdv de 2025
+-- affiche la date et l'heure des rdv de 2026
 SELECT id_rendez_vous, date_heure
 FROM RENDEZ_VOUS
-WHERE date_heure BETWEEN '2025-01-01' AND '2025-12-31';
+WHERE date_heure BETWEEN '2026-01-01' AND '2026-12-31';
 
 -- affiche le nombre de rdv par medecin
 SELECT id_medecin, COUNT(*) AS nombre_rdv
